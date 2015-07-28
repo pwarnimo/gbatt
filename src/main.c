@@ -1,4 +1,5 @@
 #include <gtk/gtk.h>
+#include "about.h"
 
 void trayIconClick(GtkStatusIcon *icon, gpointer data) {
 	printf("Clicked on tray icon\n");
@@ -84,6 +85,8 @@ int main(int argc, char *argv[]) {
 	g_signal_connect_swapped(G_OBJECT(trayIcon), "button-press-event", G_CALLBACK(showPopupMenu), popupMenu);
 
 	gtk_widget_show(window);
+
+	showAboutDialog((gpointer)window, NULL);
 
 	gtk_main();
 

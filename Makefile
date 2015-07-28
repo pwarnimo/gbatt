@@ -6,8 +6,8 @@ OBJ_DIR = obj
 
 all: directories gbatt
 
-gbatt: src/main.c
-	gcc -o bin/gbatt src/main.c `pkg-config --libs --cflags gtk+-2.0`
+gbatt: src/main.c src/about.c
+	gcc -o bin/gbatt src/main.c src/about.c `pkg-config --libs --cflags gtk+-2.0`
 
 directories: ${OUT_DIR} ${OBJ_DIR}
 
