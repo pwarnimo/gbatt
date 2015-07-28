@@ -32,8 +32,19 @@ static GtkStatusIcon *createTrayIcon() {
 
 	g_signal_connect(G_OBJECT(trayIcon), "activate", G_CALLBACK(trayIconClick), NULL);
 
+	GdkPixbuf *sprite;
+	GdkPixbuf *current;
+
+	sprite = gdk_pixbuf_new_from_file("res/battery-sprite.png", NULL);
+
+	current = gdk_pixbuf_new(GDK_COLORSPACE_RGB, TRUE, 8, 16, 16);
+
+	gdk_pixbuf_copy_area(sprite, 0, 0, 16, 16, current, 0, 0);
+
+	//GdkPixbuf("res/battery-sprite.png", NULL);
+
 	//gtk_status_icon_set_from_icon_name(trayIcon, GTK_STOCK_MEDIA_STOP);
-	gtk_status_icon_set_from_pixbuf(trayIcon, gdk_pixbuf_new_from_file("res/battery-sprite.png", NULL));
+	gtk_status_icon_set_from_pixbuf(trayIcon, current);
 	gtk_status_icon_set_tooltip(trayIcon, "Battery (bat0) is discharging: 100%");
 	gtk_status_icon_set_visible(trayIcon, TRUE);
 
